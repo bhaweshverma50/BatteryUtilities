@@ -13,3 +13,8 @@ def convertTime(seconds):
 
 
 print("Battery left : ", convertTime(battery.secsleft))
+
+file = open("test.txt", "w")
+L = [battery.percent, battery.power_plugged,
+     convertTime(battery.secsleft)]
+file.writelines(str(L))
