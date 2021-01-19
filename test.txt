@@ -1,1 +1,1 @@
-[58, False, '1:17:12']
+['Battery % : 69%', 'Charger Plugged in: On battery power! Discharging...', 'Time Remaininng: 1:51:14']

@@ -2,8 +2,15 @@ import psutil
 
 battery = psutil.sensors_battery()
 
-print("Battery percentage : ", battery.percent)
-print("Power plugged in : ", battery.power_plugged)
+batteryPercent = str(battery.percent)
+
+if(battery.power_plugged):
+    batteryPower = "Charger Connected! Charging..."
+else:
+    batteryPower = "On battery power! Discharging..."
+
+print("Battery percentage : "+batteryPercent+"%")
+print("Power plugged in : "+batteryPower)
 
 
 def convertTime(seconds):
@@ -12,10 +19,12 @@ def convertTime(seconds):
     return "%d:%02d:%02d" % (hours, minutes, seconds)
 
 
-print("Battery left : ", convertTime(battery.secsleft))
+timeRemaining = str(convertTime(battery.secsleft))
+
+print("Battery left : "+timeRemaining)
 
 file = open("test.txt", "w")
-L = [battery.percent, battery.power_plugged,
-     convertTime(battery.secsleft)]
+L = ["Battery % : "+batteryPercent+"%", "Charger Plugged in: "+batteryPower,
+     "Time Remaininng: "+timeRemaining]
 file.writelines(str(L))
 file.close()
