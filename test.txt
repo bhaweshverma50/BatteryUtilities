@@ -1,1 +1,0 @@
-['Battery % : 69%', 'Charger Plugged in: On battery power! Discharging...', 'Time Remaininng: 1:51:14']

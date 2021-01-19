@@ -1,0 +1,3 @@
+Battery : 28%
+Status: Discharging...
+Time Remaininng: 0:51:52
