@@ -33,11 +33,11 @@ start = 0
 chargeTime = 0
 lastCharged = 0
 
-while(status):
-    start = time.time()
+# while(status):
+#     start = time.time()
 
-end = time.time()
-chargeTime = convertTime(end-start)
+# end = time.time()
+# chargeTime = convertTime(end-start)
 
 # Outputting the data in terminal as well as in txt file
 file = open("output.txt", "w")
