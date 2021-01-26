@@ -21,6 +21,7 @@
 #       "\nTime Remaininng: "+timeRemaining)
 
 import keyboard
+
 print("starting")
-keyboard.wait('q')
+keyboard.wait("q")
 print("closing")

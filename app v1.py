@@ -1,6 +1,7 @@
 # Imported required library and made object of battery sensor class/function
 import psutil
 import time
+
 battery = psutil.sensors_battery()
 
 
@@ -12,8 +13,11 @@ def convertTime(seconds):
 
 
 def output():
-    L = ["Battery : "+batteryPercent+"%", "Status: "+batteryPower,
-         "Time Remaininng: "+timeRemaining]
+    L = [
+        "Battery : " + batteryPercent + "%",
+        "Status: " + batteryPower,
+        "Time Remaininng: " + timeRemaining,
+    ]
     for i in L:
         print(i, flush=True)
         file.write("%s\n" % i)
@@ -23,7 +27,7 @@ def output():
 batteryPercent = str(battery.percent)
 status = battery.power_plugged
 
-if(status):
+if status:
     batteryPower = "Charging..."
 else:
     batteryPower = "Discharging..."
