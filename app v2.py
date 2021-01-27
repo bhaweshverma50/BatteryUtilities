@@ -1,6 +1,21 @@
-# import psutil
+import psutil
+import keyboard
 
-# battery = psutil.sensors_battery()
+battery = psutil.sensors_battery()
+status = battery.power_plugged
+
+print("Starting Program...")
+
+while True:
+    if keyboard.is_pressed("q"):
+        break
+    elif(status):
+        print("Charging...")
+        # pass
+    else:
+        print("Discharging...")
+        # pass
+print("Closing Program...")
 
 
 # def convertTime(seconds):
@@ -10,7 +25,6 @@
 
 
 # batteryPercent = str(battery.percent)
-# status = battery.power_plugged
 # if(status):
 #     batteryPower = "Charging..."
 # else:
@@ -19,9 +33,3 @@
 
 # print("Battery : "+batteryPercent+"%", "\nStatus: "+batteryPower,
 #       "\nTime Remaininng: "+timeRemaining)
-
-import keyboard
-
-print("starting")
-keyboard.wait("q")
-print("closing")
