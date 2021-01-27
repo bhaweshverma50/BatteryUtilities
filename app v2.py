@@ -1,20 +1,20 @@
 import psutil
 import keyboard
-
-battery = psutil.sensors_battery()
-status = battery.power_plugged
+import time
 
 print("Starting Program...")
 
 while True:
+    battery = psutil.sensors_battery()
+    status = battery.power_plugged
+    print(status)
     if keyboard.is_pressed("q"):
         break
-    elif(status):
+    elif(status == True):
         print("Charging...")
-        # pass
-    else:
+    elif(status == False):
         print("Discharging...")
-        # pass
+    time.sleep(1)
 print("Closing Program...")
 
 
