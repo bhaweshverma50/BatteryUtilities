@@ -3,18 +3,38 @@ import keyboard
 import time
 
 print("Starting Program...")
+start = 0
+end = 0
+run = 0
+
+
+def convertTime(seconds):
+    minutes, seconds = divmod(seconds, 60)
+    hours, minutes = divmod(minutes, 60)
+    return "%d:%02d:%02d" % (hours, minutes, seconds)
+
 
 while True:
     battery = psutil.sensors_battery()
     status = battery.power_plugged
-    print(status)
+
     if keyboard.is_pressed("q"):
         break
+
     elif(status == True):
-        print("Charging...")
+        if(run == 1):
+            print("Charging...")
+            end = time.time()
+            runTime = convertTime(end-start)
+            print(runTime)
+            run = 0
+
     elif(status == False):
-        print("Discharging...")
-    time.sleep(1)
+        if(run == 0):
+            start = time.time()
+            run = 1
+            print("Discharging...")
+
 print("Closing Program...")
 
 
