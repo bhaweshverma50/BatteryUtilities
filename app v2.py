@@ -23,17 +23,19 @@ while True:
 
     elif(status == True):
         if(run == 1):
-            print("Charging...")
+            print("*******************************")
+            print("\nPlugged in! Charging...")
             end = time.time()
             runTime = convertTime(end-start)
-            print(runTime)
+            print("Last charged "+runTime+" ago\n")
             run = 0
 
     elif(status == False):
         if(run == 0):
             start = time.time()
             run = 1
-            print("Discharging...")
+            print("*******************************")
+            print("Running on battery! Discharging...\n")
 
 print("Closing Program...")
 
