@@ -34,19 +34,19 @@ while True:
             print("\nPlugged in! Charging...")
             dischargeEnd = chargingStart = time.time()
             if(dischargeStart != 0):
-                runTime = convertTime(dischargeEnd-dischargeStart)
-                print("Last charged "+runTime+" ago\n")
+                dischargeTime = convertTime(dischargeEnd-dischargeStart)
+                print("Discharged for "+dischargeTime+" time\n")
             run = 0
 
     elif(status == False):
         if(run == 0):
-            dischargeStart = chargingEnd = time.time()
-            run = 1
-            if(dischargeStart != 0):
-                runTime = convertTime(dischargeEnd-dischargeStart)
-                print("Last charged "+runTime+" ago\n")
             print("*******************************")
             print("Running on battery! Discharging...\n")
+            dischargeStart = chargingEnd = time.time()
+            run = 1
+            if(chargingStart != 0):
+                chargeTime = convertTime(chargingEnd-chargingStart)
+                print("Charged for "+chargeTime+" time\n")
 
 print("Closing Program...")
 
