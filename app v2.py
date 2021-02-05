@@ -3,9 +3,16 @@ import keyboard
 import time
 
 print("Starting Program...")
-start = 0
-end = 0
-run = 0
+dischargeStart = 0
+dischargeEnd = 0
+chargingStart = 0
+chargingStart = 0
+battery = psutil.sensors_battery()
+status = battery.power_plugged
+if(status):
+    run = 1
+else:
+    run = 0
 
 
 def convertTime(seconds):
@@ -25,15 +32,19 @@ while True:
         if(run == 1):
             print("*******************************")
             print("\nPlugged in! Charging...")
-            end = time.time()
-            runTime = convertTime(end-start)
-            print("Last charged "+runTime+" ago\n")
+            dischargeEnd = chargingStart = time.time()
+            if(dischargeStart != 0):
+                runTime = convertTime(dischargeEnd-dischargeStart)
+                print("Last charged "+runTime+" ago\n")
             run = 0
 
     elif(status == False):
         if(run == 0):
-            start = time.time()
+            dischargeStart = chargingEnd = time.time()
             run = 1
+            if(dischargeStart != 0):
+                runTime = convertTime(dischargeEnd-dischargeStart)
+                print("Last charged "+runTime+" ago\n")
             print("*******************************")
             print("Running on battery! Discharging...\n")
 
