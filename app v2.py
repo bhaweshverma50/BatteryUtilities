@@ -12,6 +12,7 @@ chargingEnd = 0
 chargeStartPercent = 0
 chargeEndPercent = 0
 
+
 b = psutil.sensors_battery()
 init_status = b.power_plugged
 
@@ -31,6 +32,7 @@ while True:
     battery = psutil.sensors_battery()
     status = battery.power_plugged
     percent = battery.percent
+    timeRemaining = convertTime(battery.secsleft)
 
     if keyboard.is_pressed("q"):
         break
@@ -46,6 +48,7 @@ while True:
             if(chargingEnd != 0):
                 dischargeTime = convertTime(chargingStart-chargingEnd)
                 totalPercentDischarged = chargeEndPercent - chargeStartPercent
+
                 print(
                     f"Discharged {totalPercentDischarged}% in {dischargeTime} time\n")
                 print(f"Charging started at: {percent}%")
@@ -67,11 +70,14 @@ while True:
             if(chargingStart != 0):
                 chargeTime = convertTime(chargingEnd-chargingStart)
                 totalPercentCharged = chargeEndPercent - chargeStartPercent
+
                 print(f"Charged {totalPercentCharged}% in {chargeTime} time\n")
-                print(f"Charging ended at: {percent}%")
+                print(f"Charging ended at: {percent}%\n")
+                print(f"Predicted Time Remaining: {timeRemaining}")
                 print("**************************************")
             else:
-                print(f"Discharging started at: {percent}%")
+                print(f"Discharging started at: {percent}%\n")
+                print(f"Predicted Time Remaining: {timeRemaining}")
                 print("**************************************")
 
             run = 1
