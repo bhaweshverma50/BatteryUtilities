@@ -3,13 +3,19 @@ import keyboard
 import time
 
 print("Starting Program...")
+
 dischargeStart = 0
 dischargeEnd = 0
+
 chargingStart = 0
 chargingStart = 0
-battery = psutil.sensors_battery()
-status = battery.power_plugged
-if(status):
+chargeStartPercent = 0
+chargeEndPercent = 0
+
+b = psutil.sensors_battery()
+init_status = b.power_plugged
+
+if(init_status):
     run = 1
 else:
     run = 0
@@ -24,45 +30,46 @@ def convertTime(seconds):
 while True:
     battery = psutil.sensors_battery()
     status = battery.power_plugged
+    percent = battery.percent
 
     if keyboard.is_pressed("q"):
         break
 
     elif(status == True):
         if(run == 1):
-            print("*******************************")
-            print("\nPlugged in! Charging...")
+            print("\n*******************************")
+            print("Plugged in! Charging...")
+
             dischargeEnd = chargingStart = time.time()
+            chargeStartPercent = battery.percent
+
             if(dischargeStart != 0):
                 dischargeTime = convertTime(dischargeEnd-dischargeStart)
-                print("Discharged for "+dischargeTime+" time\n")
+                totalPercentDischarged = chargeEndPercent - chargeStartPercent
+                print(
+                    f"Discharged {totalPercentDischarged}% in {dischargeTime} time\n")
+                print(f"Charging started at: {percent}%")
+            else:
+                print(f"Charging started at: {percent}%")
+
             run = 0
 
     elif(status == False):
         if(run == 0):
-            print("*******************************")
+            print("\n*******************************")
             print("Running on battery! Discharging...\n")
+
             dischargeStart = chargingEnd = time.time()
-            run = 1
+            chargeEndPercent = battery.percent
+
             if(chargingStart != 0):
                 chargeTime = convertTime(chargingEnd-chargingStart)
-                print("Charged for "+chargeTime+" time\n")
+                totalPercentCharged = chargeEndPercent - chargeStartPercent
+                print(f"Charged {totalPercentCharged}% in {chargeTime} time\n")
+                print(f"Charging ended at: {percent}%")
+            else:
+                print(f"Discharging started at: {percent}%")
+
+            run = 1
 
 print("Closing Program...")
-
-
-# def convertTime(seconds):
-#     minutes, seconds = divmod(seconds, 60)
-#     hours, minutes = divmod(minutes, 60)
-#     return "%d:%02d:%02d" % (hours, minutes, seconds)
-
-
-# batteryPercent = str(battery.percent)
-# if(status):
-#     batteryPower = "Charging..."
-# else:
-#     batteryPower = "Discharging..."
-# timeRemaining = str(convertTime(battery.secsleft))
-
-# print("Battery : "+batteryPercent+"%", "\nStatus: "+batteryPower,
-#       "\nTime Remaininng: "+timeRemaining)
