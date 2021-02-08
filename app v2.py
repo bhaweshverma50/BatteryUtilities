@@ -37,8 +37,8 @@ while True:
 
     elif(status == True):
         if(run == 1):
-            print("\n*******************************")
-            print("Plugged in! Charging...")
+            print("\n**************************************")
+            print("Plugged in! Charging...\n")
 
             chargingStart = time.time()
             chargeStartPercent = battery.percent
@@ -49,14 +49,16 @@ while True:
                 print(
                     f"Discharged {totalPercentDischarged}% in {dischargeTime} time\n")
                 print(f"Charging started at: {percent}%")
+                print("**************************************")
             else:
                 print(f"Charging started at: {percent}%")
+                print("**************************************")
 
             run = 0
 
     elif(status == False):
         if(run == 0):
-            print("\n*******************************")
+            print("\n**************************************")
             print("Running on battery! Discharging...\n")
 
             chargingEnd = time.time()
@@ -67,9 +69,11 @@ while True:
                 totalPercentCharged = chargeEndPercent - chargeStartPercent
                 print(f"Charged {totalPercentCharged}% in {chargeTime} time\n")
                 print(f"Charging ended at: {percent}%")
+                print("**************************************")
             else:
                 print(f"Discharging started at: {percent}%")
+                print("**************************************")
 
             run = 1
 
-print("Closing Program...")
+print("\nClosing Program...")
