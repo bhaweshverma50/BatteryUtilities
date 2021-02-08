@@ -8,7 +8,7 @@ dischargeStart = 0
 dischargeEnd = 0
 
 chargingStart = 0
-chargingStart = 0
+chargingEnd = 0
 chargeStartPercent = 0
 chargeEndPercent = 0
 
@@ -40,11 +40,11 @@ while True:
             print("\n*******************************")
             print("Plugged in! Charging...")
 
-            dischargeEnd = chargingStart = time.time()
+            chargingStart = time.time()
             chargeStartPercent = battery.percent
 
-            if(dischargeStart != 0):
-                dischargeTime = convertTime(dischargeEnd-dischargeStart)
+            if(chargingEnd != 0):
+                dischargeTime = convertTime(chargingStart-chargingEnd)
                 totalPercentDischarged = chargeEndPercent - chargeStartPercent
                 print(
                     f"Discharged {totalPercentDischarged}% in {dischargeTime} time\n")
@@ -59,7 +59,7 @@ while True:
             print("\n*******************************")
             print("Running on battery! Discharging...\n")
 
-            dischargeStart = chargingEnd = time.time()
+            chargingEnd = time.time()
             chargeEndPercent = battery.percent
 
             if(chargingStart != 0):
